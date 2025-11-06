@@ -1,4 +1,4 @@
-# 🌍 Global Weather Trends Dashboard
+# Global Weather Trends Dashboard
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)
@@ -9,7 +9,7 @@
 
 ---
 
-## 📘 Overview
+## Overview
 
 **Global Weather Trends Dashboard** is an **end-to-end Data Engineering project** that collects, processes, and visualizes real-time weather data for major European cities.  
 It demonstrates the complete lifecycle of a data product — from **API ingestion to analytics and storytelling**.
@@ -18,13 +18,13 @@ Developed as part of a **University Data Engineering project** by **Harun SEZGIN
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 The project implements a modern **ETL + Data Warehouse + Dashboard** architecture.
 
 ![Architecture Overview](./docs/architecture.png)
 
-### 🔍 Explanation of the Architecture
+### Explanation of the Architecture
 
 1. **Data Source — Open-Meteo API**  
    The project retrieves real-time weather data (temperature, humidity, precipitation, wind speed, etc.) for multiple European cities using the Open-Meteo public API.
@@ -45,7 +45,7 @@ The project implements a modern **ETL + Data Warehouse + Dashboard** architectur
    The entire workflow is containerized, ensuring reproducibility and easy deployment on any environment.
 
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Layer | Technology | Description |
 |--------|-------------|-------------|
@@ -59,7 +59,7 @@ The project implements a modern **ETL + Data Warehouse + Dashboard** architectur
 
 ---
 
-## 🧠 Key Features
+## Key Features
 
 ✅ Automated **ETL Pipeline** (Extract → Transform → Load → Analyze)  
 ✅ **PostgreSQL Warehouse** with dimensional modeling (fact/dim tables)  
@@ -70,7 +70,7 @@ The project implements a modern **ETL + Data Warehouse + Dashboard** architectur
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 global-weather-trends/
@@ -98,15 +98,15 @@ global-weather-trends/
 
 ---
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
-### 1️⃣ Clone the Repository
+### Clone the Repository
 ```bash
 git clone https://github.com/HarunSezgin/global-weather-trends.git
 cd global-weather-trends
 ```
 
-### 2️⃣ Environment Setup
+### Environment Setup
 Copy the example environment file and configure it:
 ```bash
 cp .env.example .env
@@ -125,7 +125,7 @@ DATA_DIR=data
 
 ---
 
-### 3️⃣ Run with Docker (Recommended)
+### Run with Docker (Recommended)
 ```bash
 docker compose up -d --build
 ```
@@ -137,13 +137,13 @@ This will:
 
 ---
 
-### 4️⃣ Access the Dashboard
+### Access the Dashboard
 Once running, open your browser:  
 👉 [http://localhost:8501](http://localhost:8501)
 
 ---
 
-## 🧩 ETL Workflow
+## ETL Workflow
 
 | Step | Module | Description |
 |------|---------|-------------|
@@ -155,7 +155,7 @@ Once running, open your browser:
 
 ---
 
-## 🗄️ Database Design
+## Database Design
 
 **Core Tables:**
 - `dim_city` → Reference for cities  
@@ -165,7 +165,7 @@ Once running, open your browser:
 
 ---
 
-## 📊 Example Insights
+## Example Insights
 
 - 🌡️ Temperature trends across cities  
 - 💨 Wind speed distribution by region  
@@ -176,7 +176,7 @@ All visualized interactively through **Streamlit**.
 
 ---
 
-## 🧱 Automation (Optional: Airflow)
+## Automation (Optional: Airflow)
 
 For advanced orchestration, this project can integrate with **Apache Airflow** to refresh data daily at 6 AM.
 
@@ -187,14 +187,14 @@ Schedule: `0 6 * * *`
 
 ---
 
-## 🧾 Why Not Airflow (Design Choice)
+## Why Not Airflow (Design Choice)
 
 This project is orchestrated with **Docker Compose**, which provides sufficient automation for daily execution.  
 Airflow is suited for large-scale multi-job pipelines; here, the goal is to **demonstrate ETL proficiency** and **deployment simplicity**.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Harun SEZGIN**  
 _Data Engineering Student — University Project_  
@@ -203,7 +203,7 @@ _Data Engineering Student — University Project_
 
 ---
 
-## 🧠 Key Learnings
+## Key Learnings
 
 - Building **end-to-end ETL pipelines** with Python and SQL  
 - Working with **real-world API data**  
