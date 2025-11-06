@@ -1,0 +1,17 @@
+# --- Core ---
+python-dotenv
+pandas
+requests
+SQLAlchemy
+
+# --- Dashboard ---
+streamlit
+plotly
+psycopg2-binary
+
+# --- Parquet I/O (pour to_parquet / read_parquet) ---
+fastparquet
+
+# --- Orchestration simple ---
+schedule
+tqdm

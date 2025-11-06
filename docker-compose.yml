@@ -1,0 +1,89 @@
+version: "3.9"
+
+services:
+  # ---------- DATABASE ----------
+  postgres:
+    image: postgres:15
+    container_name: postgres_weather
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: weatherdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - weather_net
+
+  # ---------- PGADMIN ----------
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_weather
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@demo.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - weather_net
+
+  # ---------- AIRFLOW ----------
+  airflow:
+    image: apache/airflow:2.9.0
+    container_name: airflow_weather
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres:5432/weatherdb
+      - AIRFLOW__WEBSERVER__RBAC=True
+      - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    command: >
+      bash -c "airflow db init &&
+               airflow users create --username admin --password admin --firstname Harun --lastname Sezgin --role Admin --email admin@example.com &&
+               airflow webserver & airflow scheduler"
+    networks:
+      - weather_net
+
+  # ---------- STREAMLIT ----------
+  streamlit:
+    build: .
+    container_name: streamlit_weather
+    command: streamlit run app/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      - DB_URL=postgresql+psycopg2://postgres:postgres@postgres:5432/weatherdb
+      - DATA_DIR=/app/data
+    depends_on:
+      - postgres
+    networks:
+      - weather_net
+
+  # ---------- ETL (manual or scheduled) ----------
+  etl:
+    build: .
+    container_name: etl_weather
+    command: python -m etl.etl_pipeline
+    environment:
+      - DB_URL=postgresql+psycopg2://postgres:postgres@postgres:5432/weatherdb
+      - DATA_DIR=/app/data
+    depends_on:
+      - postgres
+    networks:
+      - weather_net
+
+volumes:
+  postgres_data:
+
+networks:
+  weather_net:
+    driver: bridge

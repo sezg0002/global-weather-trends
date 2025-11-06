@@ -1,0 +1,18 @@
+# Environment files
+.env
+__pycache__/
+*.pyc
+*.pyo
+
+# Data
+data/
+*.parquet
+*.db
+
+# Virtual environment
+venv/
+.env/
+.idea/
+
+# Docker stuff
+*.log
