@@ -198,8 +198,8 @@ Airflow is suited for large-scale multi-job pipelines; here, the goal is to **de
 
 **Harun SEZGIN**  
 _Data Engineering Student — University Project_  
-📧 Contact: (optional)  
-🌐 GitHub: [HarunSezgin](https://github.com/HarunSezgin)
+📧 Contact: sezg0002@gmail.com 
+🌐 GitHub: [sezg0002](https://github.com/sezg0002)
 
 ---
 
